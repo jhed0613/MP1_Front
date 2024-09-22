@@ -1,9 +1,11 @@
-import React, { useEffect, useState, Link } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from './Header';
+import './home.css'; 
 
 const Mypage = () => {
   const [stockData, setStockData] = useState([]); // 주식 데이터를 상태로 관리
+  const [userData, setUserData] = useState(null); // 유저 데이터를 객체로 관리
   const token = localStorage.getItem('token'); // JWT 토큰을 로컬 스토리지에서 가져옴
   const userId = localStorage.getItem('userId'); // userId도 로컬 스토리지에서 가져옴 (또는 다른 방법으로 얻을 수 있음)
 
@@ -11,14 +13,25 @@ const Mypage = () => {
     // API 호출
     const fetchStockData = async () => {
       try {
-        const response = await axios.get(`/api/mypage/${userId}`, {
+        const stockResponse = await axios.get(`/api/mypage/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 포함
           },
         });
-        setStockData(response.data); // API 응답 데이터로 상태 업데이트
+        setStockData(stockResponse.data); // API 응답 데이터로 상태 업데이트
       } catch (error) {
         console.error('Error fetching stock data:', error);
+      }
+
+      try {
+        const userResponse = await axios.get(`/user`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 포함
+          },
+        });
+        setUserData(userResponse.data); // API 응답 데이터로 상태 업데이트
+      } catch (error) {
+        console.error('Error fetching user data:', error);
       }
     };
 
@@ -28,7 +41,28 @@ const Mypage = () => {
   return (
     <div>
       <Header /> {/* Header 컴포넌트 */}
-      <div className="table-container">
+      <div className="table-container1">
+        {/* 유저 데이터가 있을 때만 테이블 표시 */}
+        {userData && (
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>보유 코인</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{userData.username}</td>
+                <td>{Number(userData.coin).toLocaleString()}원</td>
+              </tr>
+            </tbody>
+          </table>
+        )}
+        <p> </p>
+        <hr/>
+        </div>
+        <div className="table-container2">
         <table>
           <thead>
             <tr>

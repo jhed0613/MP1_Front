@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { DiffAmount, DayRange } from '../UpDownColor';
 import Clock from '../Clock';
@@ -16,6 +16,8 @@ function StockDetail({ apiEndpoint, isKospi, title }) {
     const [quantity, setQuantity] = useState(1);
     const [calculatedMaxQuantity, setCalculatedMaxQuantity] = useState(0);
     const [userData, setUserData] = useState({ username: '', coins: 0 });
+    // const [userData, setUserData] = useState(null);
+    const navigate = useNavigate;
 
     const handleQuantityChange = (event) => {
         const value = event.target.value.replace(/[^0-9]/g, '');
@@ -34,36 +36,39 @@ function StockDetail({ apiEndpoint, isKospi, title }) {
 
             try {
                 axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                const userResponse = await axios.get('/home'); // Adjusted endpoint
-                const coins = userResponse.data?.user?.coins || 0;
-                setUserData({
-                    username: userResponse.data?.user?.username || '',
-                    coins,
-                });
-
-                // Fetch the stocks list for the given apiEndpoint
+                const userResponse = await axios.get('/user');
+                setUserData(userResponse.data);
+    
                 const stocksResponse = await axios.get(apiEndpoint);
-                setStocks(stocksResponse.data); // Update stocks data
-
-                // Find the specific stock
+                setStocks(stocksResponse.data);
+    
                 const foundStock = stocksResponse.data.find(stock => stock.stockName === stockName);
                 if (foundStock) {
                     setStock(foundStock);
                     const price = parseFloat(foundStock.price.replace(/[^0-9]/g, ''));
-                    const calculatedMaxQuantity = coins ? Math.floor(coins / price) : 0;
+                    const calculatedMaxQuantity = userResponse.data.coin ? Math.floor(userResponse.data.coin / price) : 0; // 여기서 userResponse.data.coins 사용
                     setCalculatedMaxQuantity(calculatedMaxQuantity);
                 } else {
                     setError('Stock not found.');
                 }
             } catch (error) {
+                console.error(error);
                 setError('Error fetching stock data.');
             } finally {
                 setLoading(false);
             }
         };
-
+    
         fetchStockData();
     }, [stockName, apiEndpoint]);
+
+    useEffect(() => {
+        if (stock && userData.coins) {
+            const price = parseFloat(stock.price.replace(/[^0-9]/g, ''));
+            const calculatedMaxQuantity = Math.floor(userData.coins / price);
+            setCalculatedMaxQuantity(calculatedMaxQuantity);
+        }
+    }, [userData, stock]);
 
 
     const handleBuy = async () => {
@@ -83,11 +88,26 @@ function StockDetail({ apiEndpoint, isKospi, title }) {
             });
             if (response.data) {
                 alert(`매수 성공 ${quantity} 주, 주식 종목 : ${stock.stockName}`);
+                const userResponse = await axios.get('/user');
+                setUserData(userResponse.data);
+
+                const stocksResponse = await axios.get(apiEndpoint);
+                setStocks(stocksResponse.data);
+    
+                const foundStock = stocksResponse.data.find(stock => stock.stockName === stockName);
+                if (foundStock) {
+                    setStock(foundStock);
+                    const price = parseFloat(foundStock.price.replace(/[^0-9]/g, ''));
+                    const calculatedMaxQuantity = userResponse.data.coin ? Math.floor(userResponse.data.coin / price) : 0; // 여기서 userResponse.data.coins 사용
+                    setCalculatedMaxQuantity(calculatedMaxQuantity);
+                } else {
+                    setError('Stock not found.');
+                }
             } else {
                 alert('Failed to buy stock. Please try again.');
             }
         } catch (error) {
-            alert('잔액 부족');
+            alert('수량 입력 오류');
         }
     };
 
@@ -112,11 +132,27 @@ function StockDetail({ apiEndpoint, isKospi, title }) {
             
             if (response.data) {
                 alert(`매도 성공 ${quantity} 주, 주식 종목 : ${stock.stockName}`);
+                const userResponse = await axios.get('/user');
+                setUserData(userResponse.data);
+
+                const stocksResponse = await axios.get(apiEndpoint);
+                setStocks(stocksResponse.data);
+    
+                const foundStock = stocksResponse.data.find(stock => stock.stockName === stockName);
+                if (foundStock) {
+                    setStock(foundStock);
+                    const price = parseFloat(foundStock.price.replace(/[^0-9]/g, ''));
+                    const calculatedMaxQuantity = userResponse.data.coin ? Math.floor(userResponse.data.coin / price) : 0; // 여기서 userResponse.data.coins 사용
+                    setCalculatedMaxQuantity(calculatedMaxQuantity);
+                } else {
+                    setError('Stock not found.');
+                }
+                
             } else {
                 alert('Failed to sell stock. Please try again.');
             }
         } catch (error) {
-                alert('수량 부족1');
+                alert('수량 입력 오류');
         }
     };
 
@@ -162,7 +198,8 @@ function StockDetail({ apiEndpoint, isKospi, title }) {
                             />
                         </div>
                         <div>보유자산</div>
-                        <div className="value">{userData.coins.toLocaleString()} 원</div>
+                        <div className="value">{userData.coin.toLocaleString()} 원</div>
+                        {/* <div className="value">{userData.coin} 원</div> */}
                         {/* <div colspan="2" className="order-status">{calculatedMaxQuantity} 주 주문가능</div> */}
                         <div className="order-status">{calculatedMaxQuantity} 주 주문가능</div>
                         <div>총 금액</div>

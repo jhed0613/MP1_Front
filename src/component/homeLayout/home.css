@@ -140,6 +140,17 @@ nav ul li a {
     border-radius: 5px;
 }
 
+.table-container1 {
+    font-size:20px;
+    margin:100px;
+}
+
+.table-container2 {
+    font-size:20px;
+    margin:100px;
+}
+
+
 /* Footer Styling */
 footer {
     background-color: #f9f9f9;
