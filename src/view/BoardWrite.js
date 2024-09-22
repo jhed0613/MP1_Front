@@ -118,22 +118,22 @@ function BoardWrite() {
                     name="file"
                     onChange={handleFileChange}
                 />
-                <input
-                    type="submit"
-                    id="submit"
-                    value="생성"
-                    className="btn"
-                />
-                <button onClick={() => navigate('/board')} className="btn">목록으로</button>
-                {/* <button onClick={handleUpdate}>수정하기</button> */}
-                <Link
-                    to="/board/write"
-                    onClick={handleUpdate} // 클릭 시 수정 권한 체크
-                >
-                    <button>수정하기</button>
-                </Link>
-                {/* <button onClick={handleDelete} className="btn">삭제하기</button> */}
-            </form>
+                <div className="button-container"> {/* 버튼 컨테이너 추가 */}
+            <input
+                type="submit"
+                id="submit"
+                value="생성"
+                className="btn"
+            />
+            <button type="button" onClick={() => navigate('/board')} className="btn">목록으로</button>
+        </div>
+        <Link
+            to="/board/write"
+            onClick={handleUpdate}
+        >
+            {/* <button>수정하기</button> */}
+        </Link>
+        </form>
         </div>
         </div>
     );

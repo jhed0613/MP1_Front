@@ -122,14 +122,7 @@ function BoardDetail() {
             {/* Buttons for editing and deleting the post */}
             <div className="post-actions">
                 <button onClick={() => navigate('/board')} className="btn">목록으로</button>
-                {/* <button onClick={() => navigate('/board/update')} className="btn">수정하기</button> */}
-                <button onClick={handleUpdateClick}>수정하기</button>
-                {/* <Link
-                    to="/board/write"
-                    onClick={handleUpdate} // 클릭 시 수정 권한 체크
-                >
-                    <button>수정하기</button>
-                </Link> */}
+                <button onClick={handleUpdateClick} className="btn">수정하기</button>
                 <button onClick={handleDelete} className="btn">삭제하기</button>
             </div>
         </div>

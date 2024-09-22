@@ -39,8 +39,23 @@ caption {display:none; width:0; height:0; margin-top:-1px; overflow:hidden; visi
 .board_detail tbody th, .board_detail tbody td {padding:10px 15px; border-bottom:1px solid #ccc;}
 .board_detail tbody textarea {width:100%; min-height:170px}
 
-.btn {margin:5px; padding:5px 11px; color:#fff !important; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
-.btn:hover {background: #6b9ab8;}
+/* .btn {margin:5px; padding:5px 11px; color:#fff !important; display:inline-block; background-color:#7D7F82; vertical-align:middle; border-radius:0 !important; cursor:pointer; border:none;}
+.btn:hover {background: #6b9ab8;} */
+.btn {
+    display: inline-block; /* 버튼을 같은 라인에 표시 */
+    padding: 10px 15px; /* 여백 조정 */
+    margin: 5px; /* 버튼 간 간격 조정 */
+    background-color: #171823; /* 버튼 배경색 */
+    color: white; /* 글자 색 */
+    border: none; /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer; /* 마우스 커서 포인터로 변경 */
+    font-size: 14px; /* 폰트 크기 조정 */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* 마우스 오버 시 배경색 변경 */
+}
 
 .file_list a {display:inherit !important;}
 

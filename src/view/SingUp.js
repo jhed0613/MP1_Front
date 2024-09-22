@@ -17,6 +17,7 @@ function SignUp() {
 
         if (password !== passwordConfirm) {
             setErrorMessage('비밀번호가 일치하지 않습니다.');
+            alert('비밀번호가 일치하지 않습니다.');
             return;
         }
 
@@ -34,16 +35,20 @@ function SignUp() {
 
             if (response.status === 200) {
                 navigate('/login'); // 회원가입 성공 시 로그인 페이지로 이동
+                alert("회원가입 성공");
             } else {
+                alert('회원가입에 실패했습니다.');
                 setErrorMessage('회원가입에 실패했습니다.');
             }
         } catch (error) {
             if (error.response && error.response.status === 400) {
                 // 회원가입 실패: 잘못된 자격 증명 또는 다른 문제
                 setErrorMessage(error.response.data.message || '회원가입에 실패했습니다.');
+                alert('아이디가 이미 존재합니다');
             } else {
                 // 기타 오류
                 console.error('Error occurred:', error);
+                alert('회원가입 중 문제가 발생했습니다.');
                 setErrorMessage('회원가입 중 문제가 발생했습니다.');
             }
         }
