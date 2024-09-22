@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Header Section */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.user-options {
+    display: flex;
+    gap: 15px;
+}
+
+.user-options a {
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+/* Login Section */
+.login-section {
+    max-width: 400px;
+    margin: 100px auto;
+    text-align: center;
+}
+
+.login-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #333;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+}
+
+.links {
+    display: flex;
+    gap: 10px;
+}
+
+.links a {
+    color: #333;
+    text-decoration: none;
+}
+
+button {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

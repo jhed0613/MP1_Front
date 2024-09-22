@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #5a8dfb;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+}
+
+.user-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 아이콘과 텍스트 사이에 간격 */
+}
+
+.user-icons .profile {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #333;
+}
+
+.user-icons .profile i {
+    font-size: 2.3rem; /* 아이콘 크기 조절 */
+    color: #333; /* 아이콘 색상 */
+}
+
+.user-icons .profile a {
+    text-decoration: none;
+    color: #333; /* 텍스트 색상 */
+}
+
+.user-icons .profile a:hover {
+    color: #555; /* 마우스 오버 시 텍스트 색상 */
+}
+
+.user-options {
+    display: flex;
+    gap: 15px;
+}
+
+.user-options a {
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+/* Image Section Styling */
+.image-section {
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+}
+
+.image-section img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Quote Section Styling */
+.quote-section {
+    /* background-image: url('your-quote-background-image.jpg'); */
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    color: white;
+}
+
+.quote-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.quote-content {
+    z-index: 1;
+}
+
+.quote-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.quote-content p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.quote-content .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #f9f9f9;
+    padding: 30px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+footer ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+footer ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+footer p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+footer .clickn {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    display: inline-block;
+    color: black;
+}

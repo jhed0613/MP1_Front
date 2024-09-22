@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    padding: 20px;
+    background-color: #fff; /* 흰색 배경 추가 */
+    overflow-y: auto; /* 세로 스크롤 추가 */
+    max-height: calc(100vh - 60px); /* 헤더 및 여백을 제외한 최대 높이 설정 */
+}
+
+
+h2 {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-icons span, .user-icons span {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    padding: 20px;
+}
+
+/* Stock Chart Section */
+.stock-chart {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    height: 500px;
+    margin-right: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* Stock Info Section */
+.stock-info {
+    flex: 1.5;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stock-name {
+    background-color: #e0e0e0;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.info-grid div {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: left;
+}
+
+.value {
+    background-color: #fff;
+}
+
+.input-quantity {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+
+.input-quantity input {
+    width: 100px;
+    padding: 5px;
+}
+
+.order-status {
+    grid-column: 1 / span 2;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons button {
+    width: 45%;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.buy {
+    background-color: #7fdfff;
+    color: white;
+}
+
+.sell {
+    background-color: #4fa8ff;
+    color: white;
+}
+
+.up-arrow {
+    color: red;
+}
+
+.down-arrow {
+    color: blue;
+}
+
+.no-change {
+    color: gray;
+}
+
+.day-range {
+    font-weight: bold;
+}
+
+.day-range.blue {
+    color: blue;
+}
+
+.day-range.red {
+    color: red;
+}
